@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useEffect, useState } from 'react';
+import BookList from './components/BookList';
+import BookForm from './components/BookForm';
+//Grab all of the books
+//display all of the books
+//add delete and archive functionality
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [books, setBooks] = useState([]);
+    const getBooks = async () => {
+        try {
+            const res = await fetch('/.netlify/functions/getBooks');
+            const books = await res.json();
+            setBooks(books);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    useEffect(() => {
+        getBooks();
+        console.log(books);
+    }, []);
+
+    return (
+        <div className="container py-5">
+            <h1 className="text-center mb-5">2021 Books List</h1>
+            <BookForm refreshBooks={getBooks} />
+            <BookList books={books} refreshBooks={getBooks} />
+        </div>
+    );
 }
 
 export default App;

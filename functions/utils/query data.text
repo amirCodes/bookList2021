@@ -1,0 +1,34 @@
+mutation {
+  createBooks(data: {name: "test...",url:"www.abc.com", description: "abc description", 
+    image:"https://image.shutterstock.com/image-photo/beautiful-pink-flower-anemones-fresh-260nw-1028135845.jpg",
+    archived: false })
+  
+  name 
+  _id
+  }
+
+
+
+
+  # Write your query or mutation here
+query {
+  allBooks{
+   data{
+     name 
+     url 
+     description 
+     image 
+     _id 
+     archived 
+    }
+  }
+}
+
+
+{
+    "name": "test...",
+    "url": "www.abc.com",
+    "image": "kkkk",
+    "description": "abc description",
+    "archived": false
+  }

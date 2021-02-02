@@ -1,10 +1,11 @@
-type Books {
+type books {
     url: String!
     name: String!
-    description: String!
+    description: String! 
+    image: String!
     archived: Boolean
 }
 
 type Query {
-    allBooks: [Books!]!
+    allBooks: [books!]!
 }
